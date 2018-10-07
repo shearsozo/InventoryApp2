@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Inventory</string>
+    <string name="add_product">Add Product</string>
+    <string name="sale">sale</string>
+    <string name="product_name">Product Name</string>
+    <string name="product_price">Product Price</string>
+    <string name="product_quantity">Product Quantity</string>
+    <string name="supplier_name">Supplier Name</string>
+    <string name="supplier_phone_number">Supplier Phone Number</string>
+    <string name="save">save</string>
+    <string name="additionSuccess">Successfully added the product to inventory.</string>
+    <string name="additionFail">Failure in adding the product to inventory. Please check your inputs and try again in sometime.</string>
+    <string name="quantity_left">Quantity left in stock: %1$d</string>
+    <string name="product_price_string">$ %1$.2f</string>
+    <string name="delete">delete</string>
+    <string name="reorder">reorder</string>
+    <string name="edit">edit</string>
+    <string name="detail_product_delete_success">Product successfully removed from the inventory!</string>
+    <string name="detail_product_delete_fail">Product deletion failed. Please try again after sometime.</string>
+    <string name="updateFail">Updating item failed. Please try again after sometime.</string>
+    <string name="updateSuccess">Updating the product details was successful!</string>
+    <string name="product_name_empty">Product name cannot be empty.</string>
+    <string name="price_invalid">Please enter a valid price for the product</string>
+    <string name="quantity_invalid">Please enter a positive number for the quantity field.</string>
+    <string name="supplier_name_empty">Supplier name cannot be an empty string.</string>
+    <string name="supplier_number_empty">Please enter a valid phone number of the supplier.</string>
+    <string name="increase">+</string>
+    <string name="decrease">-</string>
+    <string name="emptyProductsMessage">Please click on the \"ADD PRODUCT\" button to add products to your inventory!</string>
+</resources>

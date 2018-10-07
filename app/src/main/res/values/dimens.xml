@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--text-->
+    <dimen name="name">24sp</dimen>
+    <dimen name="list_name">18sp</dimen>
+    <dimen name="price">18sp</dimen>
+    <dimen name="text_margin">8dp</dimen>
+    <dimen name="list_margin">4dp</dimen>
+</resources>
