@@ -27,4 +27,6 @@
     <string name="increase">+</string>
     <string name="decrease">-</string>
     <string name="emptyProductsMessage">Please click on the \"ADD PRODUCT\" button to add products to your inventory!</string>
+    <string name="delete_product">Delete Product</string>
+    <string name="confirm_product_delete">Do you really want to delete \"%1$s\" from inventory?</string>
 </resources>

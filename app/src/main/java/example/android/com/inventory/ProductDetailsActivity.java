@@ -2,11 +2,13 @@ package example.android.com.inventory;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -54,26 +56,38 @@ public class ProductDetailsActivity extends AppCompatActivity {
         View.OnClickListener deleteProductFromInventory = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.status_message.setVisibility(View.INVISIBLE);
-                holder.delete.setEnabled(false);
-                holder.edit.setEnabled(false);
-                holder.reorder.setEnabled(false);
-                holder.increase_quantity.setEnabled(false);
-                holder.decrease_quantity.setEnabled(false);
-                int deletedRowCount = dbops.deleteProductFromInventory(product);
-                if (deletedRowCount > 0) {
-                    holder.status_message.setTextColor(Color.BLUE);
-                    holder.status_message.setText(R.string.detail_product_delete_success);
-                } else {
-                    holder.status_message.setTextColor(Color.RED);
-                    holder.status_message.setText(R.string.detail_product_delete_fail);
-                    holder.delete.setEnabled(true);
-                    holder.edit.setEnabled(true);
-                    holder.reorder.setEnabled(true);
-                    holder.increase_quantity.setEnabled(true);
-                    holder.decrease_quantity.setEnabled(true);
-                }
-                holder.status_message.setVisibility(View.VISIBLE);
+                // show a dialog box to confirm deletion of the product
+                new AlertDialog.Builder(ProductDetailsActivity.this)
+                        .setTitle(R.string.delete_product)
+                        .setMessage(getString(R.string.confirm_product_delete, product.getProduct_name()))
+                        // on ok delete the product from inventory
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                holder.status_message.setVisibility(View.INVISIBLE);
+                                holder.delete.setEnabled(false);
+                                holder.edit.setEnabled(false);
+                                holder.reorder.setEnabled(false);
+                                holder.increase_quantity.setEnabled(false);
+                                holder.decrease_quantity.setEnabled(false);
+                                int deletedRowCount = dbops.deleteProductFromInventory(product);
+                                if (deletedRowCount > 0) {
+                                    holder.status_message.setTextColor(Color.BLUE);
+                                    holder.status_message.setText(R.string.detail_product_delete_success);
+                                } else {
+                                    holder.status_message.setTextColor(Color.RED);
+                                    holder.status_message.setText(R.string.detail_product_delete_fail);
+                                    holder.delete.setEnabled(true);
+                                    holder.edit.setEnabled(true);
+                                    holder.reorder.setEnabled(true);
+                                    holder.increase_quantity.setEnabled(true);
+                                    holder.decrease_quantity.setEnabled(true);
+                                }
+                                holder.status_message.setVisibility(View.VISIBLE);
+                            }
+                        })
+                        //on cancel do nothing
+                        .setNegativeButton(android.R.string.no, null).show();
+
             }
         };
         holder.delete.setOnClickListener(deleteProductFromInventory);
@@ -101,7 +115,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         };
         holder.edit.setOnClickListener(showEditScreen);
 
-        if(product.getQuantity() <= 0) {
+        if (product.getQuantity() <= 0) {
             holder.decrease_quantity.setEnabled(false);
         } else {
             holder.decrease_quantity.setEnabled(true);
@@ -141,7 +155,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
     // Update the quantity in the view and show animation
     private void updateQuantity(int updatedRows, ViewHolder holder, ValueAnimator colorAnimation) {
-        if(updatedRows > 0) {
+        if (updatedRows > 0) {
             if (product.getQuantity() <= 0) {
                 holder.decrease_quantity.setEnabled(false);
             } else {
