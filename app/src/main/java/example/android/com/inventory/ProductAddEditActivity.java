@@ -75,10 +75,10 @@ public class ProductAddEditActivity extends AppCompatActivity {
                     if (showToastIfEmpty(quantity < 0, R.string.quantity_invalid)) return;
 
                     String newSupplierName = supplierText.getText().toString().trim();
-                    if (showToastIfEmpty(newName.isEmpty(), R.string.supplier_name_empty)) return;
+                    if (showToastIfEmpty(newSupplierName.isEmpty(), R.string.supplier_name_empty)) return;
 
                     String supplierPhoneNumber = supplierPhone.getText().toString().trim();
-                    if (showToastIfEmpty(newName.isEmpty(), R.string.supplier_number_empty)) return;
+                    if (showToastIfEmpty(supplierPhoneNumber.isEmpty(), R.string.supplier_number_empty)) return;
 
 
                     if (ProductAddEditActivity.this.product != null) {
